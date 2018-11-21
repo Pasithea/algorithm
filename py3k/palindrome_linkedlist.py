@@ -3,11 +3,17 @@
 """
 
 
+class Node:
+    def __init__(self, value=None, _next=None):
+        self.value = value
+        self.next = _next
+
+
 class Solution:
-    def __init__(self, head):
+    def __init__(self, head: Node):
          self.head = head
 
-    def __call__(self):
+    def __call__(self) -> bool:
         if self.head is None or self.head.next is None:
             return True
         prev = None
@@ -29,13 +35,7 @@ class Solution:
         return True
 
 
-class Node:
-    def __init__(self, value=None, next_=None):
-        self.value = value
-        self.next = next_
-
-
-def create_linked_list(s='XYZYX'):
+def create_linked_list(s: str) -> Node:
     head = Node(s[0])
     pre = head
     for v in s[1:]:
