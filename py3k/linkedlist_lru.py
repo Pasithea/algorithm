@@ -22,6 +22,7 @@ class LRUCache:
         self._max_size = max_size
         self._head = None
         self._size = 0
+        self._hit_count = 0
 
     def find(self, val: Optional) -> Node:
         if self._head is None:
@@ -33,6 +34,7 @@ class LRUCache:
         while cur is not None:
             nxt, prv = cur.next, cur.prev
             if cur.value == val:
+                self._hit_count += 1
                 if cur is not self._head:
                     prv.next = nxt
                     if nxt is not None:
@@ -87,10 +89,12 @@ def main(size: int):
     cache = LRUCache(size)
     import random
     import string
-    for _ in range(size * 10):
+    for _ in range(65535):
         cache.find(random.choice(string.ascii_uppercase))
     return cache
 
 
 if __name__ == '__main__':
-    print(main(10))
+    cache = main(10)
+    print(cache)
+    print(f'hit count: {getattr(cache, "_hit_count")}')
