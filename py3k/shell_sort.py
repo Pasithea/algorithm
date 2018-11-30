@@ -7,7 +7,7 @@ class ShellSort:
     def sort(self, l: list) -> list:
         length = len(l)
         if length <= 1: return l
-        gap = length // 2
+        gap = length // 2 # better gap is in (1, 5, 19, 41, 109, ...)
         while gap > 0:
             for i in range(gap, length):
                 tmp = l[i]
