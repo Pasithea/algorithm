@@ -4,19 +4,19 @@
 
 
 class MergeSort:
-    def sort(self, l):
+    def sort(self, l: list):
         low = 0
         high = len(l) - 1
         self.sort_c(l, low, high)
 
-    def sort_c(self, l, low, high):
+    def sort_c(self, l: list, low: int, high: int):
         if low >= high: return l
         mid = (low + high) // 2
         self.sort_c(l, low, mid)
         self.sort_c(l, mid+1, high)
         self.merge(l, low, mid, high)
 
-    def merge(self, l, low, mid, high):
+    def merge(self, l: list, low: int, mid: int, high: int):
         i, j = low, mid+1
         tmp = list()
         while i <= mid and j <= high:
