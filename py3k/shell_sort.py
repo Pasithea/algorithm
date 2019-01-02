@@ -17,10 +17,10 @@ class ShellSort:
                     j -= gap
                 l[j] = tmp
             gap = gap // 2
-        return l
 
 
 if __name__ == '__main__':
     she = ShellSort()
     l = [4, 9, 1, 0, 3, 8, 2, 6, 5, 7]
-    print(she.sort(l))
+    she.sort(l)
+    print(l)

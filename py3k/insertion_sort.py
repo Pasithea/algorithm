@@ -17,7 +17,6 @@ class InsertionSort:
                     break
                 j -= 1
             l[j+1] = val
-        return l
 
 
 if __name__ == '__main__':
@@ -26,4 +25,5 @@ if __name__ == '__main__':
     # \\ also you use array instead list
     # from array import array
     # l = array('b', (4, 7, 2, 1, 3, 9))
-    print(ins.sort(l))
+    ins.sort(l)
+    print(l)

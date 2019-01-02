@@ -15,10 +15,10 @@ class BubbleSort:
                     flag = True
             if not flag:
                 break
-        return l
 
 
 if __name__ == '__main__':
     bs = BubbleSort()
     l = [4, 1, 6, 7, 9, 3]
-    print(bs.sort(l))
+    bs.sort(l)
+    print(l)
