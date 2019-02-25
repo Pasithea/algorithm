@@ -46,6 +46,7 @@ class Graph:
             visited[w] = True
             if w == t:
                 found = True
+                self._print_way(prev, s, t)
                 return
             for i in range(len(self._adj[w])):
                 v = self._adj[w][i]
@@ -53,7 +54,6 @@ class Graph:
                     prev[v] = w
                     _dfs(v)
         _dfs(s)
-        self._print_way(prev, s, t)
 
 
     def _print_way(self, prev: List, s: int, t: int):
