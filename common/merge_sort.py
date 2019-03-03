@@ -10,7 +10,7 @@ class MergeSort:
         self.sort_c(l, low, high)
 
     def sort_c(self, l: list, low: int, high: int):
-        if low >= high: return l
+        if low >= high: return
         mid = (low + high) // 2
         self.sort_c(l, low, mid)
         self.sort_c(l, mid+1, high)
