@@ -10,10 +10,12 @@ class Solution:
         :rtype: int
         """
         n = 1 if x >= 0 else -1
-        s = str(abs(x))
-        result = int(''.join(reversed(s))) * n
-        # or result = int(s[::-1]) * n
-        # or result = int(''.join(s[x] for x in range(len(s)-1, -1, -1))) * n
-        if result < (-2 ** 31) or result > (2 ** 31):
+        x *= n
+        rv = 0
+        while x != 0:
+            rv = rv * 10 + x % 10
+            x //= 10
+        rv *= n
+        if rv < (-2 ** 31) or rv > (2 ** 31):
             return 0
-        return result
+        return rv
