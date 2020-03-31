@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
 	"container/list"
 	"errors"
+	"fmt"
 )
 
 func main() {
@@ -16,25 +16,28 @@ func main() {
 }
 
 type trieNode struct {
-	child [256]*trieNode
-	fail *trieNode
-	length uint32
+	child    [256]*trieNode
+	fail     *trieNode
+	length   uint32
 	isEnding bool
 }
 
 func newTrieNode(length uint32) *trieNode {
-	return &trieNode{[256]*trieNode{}, nil, length,false}
+	return &trieNode{[256]*trieNode{}, nil, length, false}
 }
 
+// Matcher matcher
 type Matcher struct {
 	root *trieNode
 	size uint32
 }
 
+// NewMatcher create new matcher
 func NewMatcher() *Matcher {
 	return &Matcher{newTrieNode(0), 0}
 }
 
+// Build build
 func (m *Matcher) Build(patterns []string) {
 	for _, s := range patterns {
 		m.addPattern(s)
@@ -79,7 +82,7 @@ func (m *Matcher) addPattern(pattern string) {
 	curNode := m.root
 	for i, v := range []byte(pattern) {
 		if curNode.child[v] == nil {
-			curNode.child[v] = newTrieNode(uint32(i+1))
+			curNode.child[v] = newTrieNode(uint32(i + 1))
 		}
 		curNode = curNode.child[v]
 	}
@@ -87,6 +90,7 @@ func (m *Matcher) addPattern(pattern string) {
 	m.size++
 }
 
+// Match match
 func (m *Matcher) Match(text string) (string, error) {
 	curNode := m.root
 	var p *trieNode
@@ -101,8 +105,8 @@ func (m *Matcher) Match(text string) (string, error) {
 		p = curNode
 		for p != m.root {
 			if p.isEnding {
-				start := i-int(p.length)+1
-				end := start+int(p.length)
+				start := i - int(p.length) + 1
+				end := start + int(p.length)
 				return text[start:end], errors.New("containing prohibited words")
 			}
 			p = p.fail

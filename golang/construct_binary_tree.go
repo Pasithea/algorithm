@@ -1,12 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 var preOrderTraversal, inOrderTraversal []int
 
+// BinaryTreeNode .
 type BinaryTreeNode struct {
 	value int
-	left *BinaryTreeNode
+	left  *BinaryTreeNode
 	right *BinaryTreeNode
 }
 
@@ -30,7 +33,7 @@ func rebuildTree(pt, it []int, length int) *BinaryTreeNode {
 	if i < length {
 		leftit := it[:i]
 		rightit := it[i+1:]
-		leftpt := pt[1:i+1]
+		leftpt := pt[1 : i+1]
 		rightpt := pt[i+1:]
 
 		if len(leftit) > 0 && len(leftpt) > 0 {

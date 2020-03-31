@@ -2,7 +2,9 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 var arr = [4][4]int{
 	{1, 2, 8, 9},
