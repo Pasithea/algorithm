@@ -6,20 +6,20 @@ func permute(nums []int) [][]int {
 		rs [][]int
 		x  []int
 	)
-	return backtrack(nums, rs, x)
+	return backtrack(nums, x, rs)
 }
 
-func backtrack(nums []int, rs [][]int, x []int) [][]int {
+func backtrack(nums, x []int, rs [][]int) [][]int {
 	if len(nums) == 0 {
 		rs = append(rs, x)
 		return rs
 	}
 	for i := range nums {
-		numsCopy := append([]int{}, nums...)
+		nums[i], nums[0] = nums[0], nums[i]
 		xCopy := append([]int{}, x...)
-		o := append(numsCopy[:i], numsCopy[i+1:]...)
-		xCopy = append(xCopy, nums[i])
-		rs = backtrack(o, rs, xCopy)
+		xCopy = append(xCopy, nums[0])
+		rs = backtrack(nums[1:], xCopy, rs)
+		nums[i], nums[0] = nums[0], nums[i]
 	}
 	return rs
 }
