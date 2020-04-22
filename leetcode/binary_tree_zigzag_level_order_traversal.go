@@ -26,11 +26,7 @@ func sub(node *TreeNode, level int, rs [][]int) [][]int {
 	if len(rs) <= level {
 		rs = append(rs, []int{})
 	}
-	if level % 2 == 0 {
-		rs[level] = append(rs[level], node.Val)
-	} else {
-		rs[level] = append(rs[level], node.Val)
-	}
+	rs[level] = append(rs[level], node.Val)
 	rs = sub(node.Left, level+1, rs)
 	rs = sub(node.Right, level+1, rs)
 	return rs
