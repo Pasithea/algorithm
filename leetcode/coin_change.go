@@ -4,15 +4,12 @@
 func coinChange(coins []int, amount int) int {
 	count := make([]int, amount+1)
 	count[0] = 0
-	for i := 1; i < amount + 1; i++ {
-		count[i] = amount + 1 // as max
-	}
-	for i := 0; i < amount + 1; i++ {
+	for i := 1; i < amount+1; i++ {
+		count[i] = amount + 1
 		for _, coin := range coins {
-			if i - coin < 0 {
-				continue
+			if i - coin >= 0 {
+				count[i] = min(count[i-coin]+1, count[i])
 			}
-			count[i] = min(count[i], count[i-coin]+1)
 		}
 	}
 	ans := count[amount]
