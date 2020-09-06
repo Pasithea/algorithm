@@ -103,8 +103,8 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-# idea
-.idea
+# dev
+.idea/
 
 # Binaries for programs and plugins
 *.exe
